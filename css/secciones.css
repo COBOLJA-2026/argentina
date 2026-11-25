@@ -1,0 +1,1297 @@
+/* Estilos compartidos de las secciones (Cultura y siguientes) */
+
+.sec-intro {
+  max-width: 720px;
+  margin: 0 auto 1.8rem;
+  text-align: center;
+}
+
+.sec-intro p,
+.sec-bajada {
+  color: var(--muted);
+}
+
+.sec-indice {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 1.2rem 0 2.5rem;
+}
+
+.sec-indice a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  text-decoration: none;
+  box-shadow: var(--sombra);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.sec-indice a:hover {
+  transform: translateY(-3px);
+  border-color: var(--celeste-oscuro);
+}
+
+.sec-num {
+  color: var(--celeste-oscuro);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.sec-indice strong {
+  color: var(--azul);
+  line-height: 1.3;
+}
+
+.sec-indice small {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.sec-bloque {
+  margin: 2.8rem 0;
+  scroll-margin-top: 1.5rem;
+}
+
+.sec-bloque > h2 {
+  margin-bottom: 0.4rem;
+}
+
+.sec-bajada {
+  max-width: 760px;
+  margin-bottom: 1.2rem;
+}
+
+/* Texto + foto */
+.sec-destacado {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  margin: 1.2rem 0;
+}
+
+.sec-destacado h3 {
+  margin-top: 0;
+}
+
+.sec-destacado .shot {
+  margin: 0;
+}
+
+.sec-destacado .shot img {
+  object-position: center 30%;
+}
+
+.sec-destacado--inverso .shot {
+  order: -1;
+}
+
+.shot-alto img {
+  aspect-ratio: auto;
+  height: 460px;
+  object-position: center 20%;
+}
+
+/* Tarjetas desplegables */
+.sec-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.8rem;
+  margin-top: 1rem;
+  align-items: start;
+}
+
+.sec-tarjeta {
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+
+.sec-tarjeta summary {
+  padding: 1rem;
+  color: var(--azul);
+  font-weight: 800;
+  line-height: 1.4;
+  cursor: pointer;
+  list-style: none;
+}
+
+.sec-tarjeta summary::-webkit-details-marker {
+  display: none;
+}
+
+.sec-tarjeta summary::after {
+  content: "+";
+  float: right;
+  margin-left: 0.4rem;
+  color: var(--celeste-oscuro);
+  font-size: 1.25rem;
+}
+
+.sec-tarjeta[open] summary::after {
+  content: "−";
+}
+
+.sec-tarjeta .sec-detalle {
+  padding: 0 1rem 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.sec-tarjeta .sec-detalle p {
+  margin: 0 0 0.6rem;
+}
+
+.sec-tarjeta .sec-detalle p:last-child {
+  margin-bottom: 0;
+}
+
+/* Recuadro "¿Sabías que?" */
+.sec-dato {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border-left: 4px solid var(--sol);
+  border-radius: 0 14px 14px 0;
+  background: #fff8e1;
+}
+
+.sec-dato strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--azul);
+}
+
+.sec-dato p {
+  margin: 0;
+}
+
+/* Fichas de patrimonio */
+.sec-patrimonio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.sec-sitio {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--celeste);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.sec-anio {
+  color: var(--celeste-oscuro);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.sec-sitio h3 {
+  margin: 0.2rem 0 0.3rem;
+  font-size: 1.05rem;
+  color: var(--azul);
+}
+
+.sec-sitio p {
+  margin: 0;
+  font-size: 0.94rem;
+}
+
+.sec-etiqueta {
+  display: inline-block;
+  margin-top: 0.55rem;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--azul);
+  background: #eaf4fc;
+  border-radius: 999px;
+}
+
+.sec-etiqueta--bolivia {
+  background: #fff1c2;
+}
+
+.sec-subtitulo {
+  margin: 1.8rem 0 0.2rem;
+  font-size: 1.15rem;
+}
+
+.sec-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+.sec-cierre {
+  margin: 2rem 0;
+  padding: 1.3rem;
+  text-align: center;
+  background: #eaf4fc;
+  border-radius: 18px;
+}
+
+.sec-cierre p {
+  margin-bottom: 0;
+}
+
+/* Mini-trivia reutilizable */
+.mt-card {
+  padding: 1.2rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--sombra);
+}
+
+.mt-progreso {
+  margin: 0 0 0.8rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.mt-pregunta {
+  min-width: 0;
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
+}
+
+.mt-pregunta legend {
+  width: 100%;
+  margin-bottom: 0.8rem;
+  padding: 0;
+  color: var(--azul);
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.mt-opciones {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.mt-opcion {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.85rem;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.mt-opcion:hover {
+  background: #f4f8fc;
+}
+
+.mt-opcion input {
+  flex-shrink: 0;
+  margin-top: 0.3rem;
+  accent-color: var(--azul-medio);
+}
+
+.mt-opcion:has(input:checked) {
+  background: #eaf4fc;
+  border-color: var(--celeste-oscuro);
+}
+
+.mt-opcion.es-correcta {
+  background: #e8f6ee;
+  border-color: var(--ok);
+}
+
+.mt-opcion.es-incorrecta {
+  background: #fdecea;
+  border-color: var(--error);
+}
+
+.mt-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.mt-resultado {
+  min-height: 1.5rem;
+  margin: 0.8rem 0 0;
+  line-height: 1.6;
+}
+
+.mt-resultado.ok {
+  color: var(--ok);
+}
+
+.mt-resultado.error {
+  color: var(--error);
+}
+
+.mt-resumen {
+  padding: 1.2rem;
+  background: #eaf4fc;
+  border-radius: 14px;
+}
+
+.mt-resumen h3 {
+  margin-top: 0;
+  color: var(--azul);
+}
+
+@media (max-width: 720px) {
+  .sec-indice {
+    gap: 0.5rem;
+  }
+
+  .sec-indice a {
+    padding: 0.75rem;
+  }
+
+  .sec-indice small {
+    font-size: 0.78rem;
+  }
+
+  .sec-destacado {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sec-destacado .shot {
+    order: -1;
+  }
+
+  .shot-alto img {
+    height: 380px;
+  }
+}
+
+@media (max-width: 420px) {
+  .sec-indice {
+    grid-template-columns: 1fr;
+  }
+
+  .mt-card {
+    padding: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sec-indice a,
+  .mt-opcion {
+    transition: none;
+  }
+}
+
+/* ---- Pestañas, listas compactas y fuentes plegables ---- */
+.sec-pestanas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.2rem 0 1.4rem;
+}
+
+.sec-pestana {
+  flex: 1 1 130px;
+  padding: 0.7rem 0.8rem;
+  color: var(--azul);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sec-pestana:hover {
+  border-color: var(--celeste-oscuro);
+}
+
+.sec-pestana[aria-selected="true"] {
+  color: #fff;
+  background: var(--azul);
+  border-color: var(--azul);
+}
+
+.sec-pestana:focus-visible {
+  outline: 3px solid var(--celeste);
+  outline-offset: 2px;
+}
+
+.sec-panel {
+  margin: 1.2rem 0 2rem;
+}
+
+.sec-panel[hidden] {
+  display: none;
+}
+
+.sec-lista {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sec-lista li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.8rem;
+  padding: 0.7rem 0.9rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.sec-lista .anio {
+  min-width: 3rem;
+  color: var(--celeste-oscuro);
+  font-weight: 800;
+}
+
+.sec-lista strong {
+  color: var(--azul);
+}
+
+.sec-lista small {
+  color: var(--muted);
+}
+
+.sec-lista .sec-etiqueta {
+  margin-top: 0;
+}
+
+.sec-fuentes summary {
+  cursor: pointer;
+}
+
+.sec-fuentes ul {
+  margin-top: 0.6rem;
+}
+
+@media (max-width: 720px) {
+  .sec-pestanas {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.3rem;
+  }
+
+  .sec-pestana {
+    flex: 0 0 auto;
+  }
+}
+
+/* ---- Cifras, pasos, expediente, mosaico, receta ---- */
+.sec-cifras {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0 1.6rem;
+}
+
+.sec-cifra {
+  padding: 1rem;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--sombra);
+}
+
+.sec-cifra strong {
+  display: block;
+  color: var(--azul);
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+
+.sec-cifra span {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.sec-pasos {
+  display: grid;
+  gap: 1.6rem;
+  margin: 1.2rem 0 2rem;
+}
+
+.sec-paso {
+  scroll-margin-top: 1.5rem;
+}
+
+
+.sec-paso h2 {
+  margin-top: 0.2rem;
+}
+
+.sec-expediente {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: exp;
+}
+
+.sec-expediente > li {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.sec-expediente details {
+  margin: 0;
+}
+
+.sec-expediente summary {
+  display: flex;
+  gap: 0.8rem;
+  align-items: baseline;
+  padding: 0.95rem 1.05rem;
+  color: var(--azul);
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.sec-expediente summary::-webkit-details-marker {
+  display: none;
+}
+
+.sec-expediente summary::before {
+  counter-increment: exp;
+  content: counter(exp, decimal-leading-zero);
+  color: var(--celeste-oscuro);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+.sec-expediente .sec-detalle {
+  padding: 0 1.05rem 1.05rem 3.1rem;
+  color: var(--muted);
+}
+
+.sec-expediente .sec-detalle p {
+  margin: 0 0 0.55rem;
+}
+
+.sec-expediente .sec-detalle p:last-child {
+  margin-bottom: 0;
+}
+
+.sec-mosaico {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.sec-mosaico details {
+  min-width: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--celeste);
+  border-radius: 14px;
+}
+
+.sec-mosaico summary {
+  padding: 0.95rem 1rem;
+  color: var(--azul);
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.sec-mosaico summary::-webkit-details-marker {
+  display: none;
+}
+
+.sec-mosaico .sec-detalle {
+  padding: 0 1rem 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.sec-atletas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.sec-atleta {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 240px;
+  max-width: 260px;
+  padding: 0.9rem;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.sec-atleta .shot {
+  margin: 0 0 0.8rem;
+  min-height: 0;
+}
+
+.sec-atleta .shot img {
+  aspect-ratio: 3 / 4;
+  object-position: center top;
+}
+
+.sec-atleta h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1.05rem;
+  text-align: center;
+}
+
+.sec-atleta .epoca {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--celeste-oscuro);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.sec-atleta p {
+  margin: 0;
+  font-size: 0.94rem;
+}
+
+.sec-receta {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: paso;
+}
+
+.sec-receta li {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: start;
+  padding: 0.9rem 1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.sec-receta li::before {
+  counter-increment: paso;
+  content: counter(paso);
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  color: #fff;
+  font-weight: 800;
+  background: var(--azul);
+  border-radius: 10px;
+}
+
+.sec-aprendizajes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+  margin: 1.2rem 0;
+}
+
+.sec-aprendizaje {
+  padding: 1.1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.sec-aprendizaje .sec-num {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.sec-aprendizaje h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.08rem;
+}
+
+.sec-aprendizaje p {
+  margin: 0;
+  color: var(--muted);
+}
+
+
+
+/* ---- Tarjetas con foto (Cultura) ---- */
+.sec-thumb {
+  display: block;
+  height: 150px;
+  margin: -1rem -1rem 0.8rem;
+  background-color: #d9eaf7;
+  background-position: center 35%;
+  background-size: cover;
+}
+
+.sec-thumb.is-empty {
+  display: none;
+}
+
+.pat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pat-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+
+.pat-card .shot {
+  margin: 0;
+  min-height: 0;
+  border-radius: 0;
+}
+
+.pat-card .shot img {
+  aspect-ratio: 16 / 10;
+}
+
+.pat-card .shot.is-empty {
+  min-height: 130px;
+  border: 0;
+  border-bottom: 2px dashed #9fc0dc;
+}
+
+.pat-card .shot.has-photo figcaption {
+  display: none;
+}
+
+.pat-cuerpo {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.8rem 0.95rem 1rem;
+}
+
+.pat-cuerpo .anio {
+  color: var(--celeste-oscuro);
+  font-weight: 800;
+}
+
+.pat-cuerpo strong {
+  color: var(--azul);
+  line-height: 1.3;
+}
+
+.pat-cuerpo small {
+  color: var(--muted);
+}
+
+.pat-cuerpo .sec-etiqueta {
+  justify-self: start;
+  border-radius: 12px;
+}
+
+/* Mostrar completas las miniaturas de Tradiciones y Vestimenta */
+#tradiciones .sec-thumb,
+#vestimenta .sec-thumb {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ---- Deportes: franja, fútbol, línea de tiempo, fichas cortas ---- */
+.sec-franja {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 0.4rem 0 2.2rem;
+  padding: 1.1rem;
+  color: #fff;
+  background: var(--azul);
+  border-radius: 20px;
+}
+
+.sec-franja-item {
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+}
+
+.sec-franja-item strong {
+  display: block;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.sec-franja-item span {
+  display: block;
+  margin-top: 0.45rem;
+  color: #cfe6f7;
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.sec-relato h3 {
+  margin: 1.1rem 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.sec-relato h3:first-child {
+  margin-top: 0;
+}
+
+.sec-otras-marcas {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sec-otras-marcas li {
+  padding: 0.75rem 0.95rem;
+  background: #fff;
+  border-left: 4px solid var(--celeste);
+  border-radius: 0 12px 12px 0;
+}
+
+.sec-otras-marcas strong {
+  color: var(--azul);
+}
+
+.sec-linea {
+  position: relative;
+  margin: 1.2rem 0 0;
+  padding: 0 0 0 1.15rem;
+  list-style: none;
+}
+
+.sec-linea::before {
+  position: absolute;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  left: 0.35rem;
+  width: 2px;
+  content: "";
+  background: #c5dced;
+}
+
+.sec-linea li {
+  position: relative;
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem 0.9rem 1.4rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.sec-linea li::before {
+  position: absolute;
+  top: 1.15rem;
+  left: -1.02rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  content: "";
+  background: var(--celeste-oscuro);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--celeste);
+}
+
+.sec-linea time {
+  display: block;
+  color: var(--celeste-oscuro);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.sec-linea strong {
+  display: block;
+  margin: 0.15rem 0 0.2rem;
+  color: var(--azul);
+}
+
+.sec-linea p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.sec-atleta .dato {
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  color: var(--azul);
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-top: 1px dashed var(--line);
+}
+
+.sec-nombres {
+  display: grid;
+  gap: 0.45rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sec-nombres li {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.9fr) minmax(6rem, 0.5fr) minmax(0, 1.4fr);
+  gap: 0.5rem 1rem;
+  align-items: baseline;
+  padding: 0.7rem 0.95rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.sec-nombres strong {
+  color: var(--azul);
+}
+
+.sec-nombres .disciplina {
+  color: var(--celeste-oscuro);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.sec-nombres span:last-child {
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.sec-federaciones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0 0;
+}
+
+.sec-federacion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1.05rem;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.sec-federacion h3 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.sec-federacion p {
+  margin: 0;
+  flex: 1;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.sec-federacion .btn {
+  align-self: flex-start;
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 800px) {
+  .sec-franja,
+  .sec-federaciones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sec-nombres li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sec-franja,
+  .sec-federaciones {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Legislación: debate a favor / en contra */
+.deb-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.2rem 0 1rem;
+}
+
+.deb-boton {
+  flex: 1 1 180px;
+  padding: 0.8rem 1rem;
+  color: var(--azul);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.deb-boton:hover {
+  border-color: var(--celeste-oscuro);
+}
+
+.deb-boton[data-lado="favor"][aria-pressed="true"] {
+  color: #fff;
+  background: var(--azul);
+  border-color: var(--azul);
+}
+
+.deb-boton[data-lado="contra"][aria-pressed="true"] {
+  color: var(--azul);
+  background: var(--sol);
+  border-color: var(--sol);
+}
+
+.deb-boton:focus-visible {
+  outline: 3px solid var(--celeste);
+  outline-offset: 2px;
+}
+
+.deb-panel {
+  padding: 1.1rem 1.2rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.deb-panel[hidden] {
+  display: none;
+}
+
+.deb-panel--favor {
+  border-top: 4px solid var(--celeste-oscuro);
+}
+
+.deb-panel--contra {
+  border-top: 4px solid var(--sol);
+}
+
+.deb-panel h3 {
+  margin-top: 0;
+}
+
+.deb-panel ul {
+  margin: 0.6rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.deb-panel li + li {
+  margin-top: 0.5rem;
+}
+
+.deb-nota {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.cred-scroll {
+  overflow-x: auto;
+  margin: 0.8rem 0;
+}
+
+.cred-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.cred-tabla th,
+.cred-tabla td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.cred-tabla th {
+  background: var(--gris);
+}
+/* Miniaturas de Cultura: ancho completo (cover) con encuadre ajustado por foto */
+.sec-thumb[data-img="tradiciones-dia-tradicion.jpg"] {
+  background-position: center 22%;
+}
+
+.sec-thumb[data-img="tradiciones-fiestas.jpg"] {
+  background-position: center 50%;
+}
+
+.sec-thumb[data-img="vestimenta-poncho-salteno.jpg"] {
+  background-position: center 75%;
+}
+
+.sec-thumb[data-img="vestimenta-ropa-para-bailar.jpg"] {
+  background-position: center 20%;
+}
+
+/* Tradiciones y Vestimenta tienen solo 2 tarjetas: con auto-fill mantienen el mismo ancho que en las demás pestañas */
+#tradiciones .sec-tarjetas,
+#vestimenta .sec-tarjetas {
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
+/* Cultura: miniaturas a ancho completo (cover) y tarjetas del mismo ancho que en las demás pestañas */
+#tradiciones .sec-thumb,
+#vestimenta .sec-thumb {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#tradiciones .sec-thumb[data-img="tradiciones-dia-tradicion.jpg"] {
+  background-position: center 22%;
+}
+
+#tradiciones .sec-thumb[data-img="tradiciones-fiestas.jpg"] {
+  background-position: center 50%;
+}
+
+#vestimenta .sec-thumb[data-img="vestimenta-poncho-salteno.jpg"] {
+  background-position: center 75%;
+}
+
+#vestimenta .sec-thumb[data-img="vestimenta-ropa-para-bailar.jpg"] {
+  background-position: center 20%;
+}
+
+#tradiciones .sec-tarjetas,
+#vestimenta .sec-tarjetas {
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
+/* Recuadro "¿Sabías que?" a todo el ancho, debajo de las tarjetas */
+#tradiciones .sec-tarjetas .sec-dato,
+#vestimenta .sec-tarjetas .sec-dato {
+  grid-column: 1 / -1;
+  margin-top: 0.4rem;
+  align-self: start;
+}
+
+/* Vestimenta: foto principal del gaucho completa (sin recortar) */
+#vestimenta .shot-alto {
+  max-width: 400px;
+  justify-self: center;
+}
+
+#vestimenta .shot-alto img {
+  height: auto;
+  aspect-ratio: 960 / 1283;
+  object-fit: cover;
+}
+
+/* ===== Cultura: tarjetas ordenadas, sin tarjetas sueltas ===== */
+/* Tradiciones (6 tarjetas): 3 + 3 */
+@media (min-width: 900px) {
+  #tradiciones .sec-tarjetas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Música, Gastronomía, Vestimenta y Lugares (grupos de 4): 2 + 2 en tablet, una línea de 4 en PC */
+@media (min-width: 560px) {
+  #musica .sec-tarjetas,
+  #gastronomia .sec-tarjetas,
+  #vestimenta .sec-tarjetas,
+  #lugares .sec-tarjetas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  #musica .sec-tarjetas,
+  #gastronomia .sec-tarjetas,
+  #vestimenta .sec-tarjetas,
+  #lugares .sec-tarjetas {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Lugares: separación entre los dos grupos de tarjetas */
+#lugares .sec-subtitulo {
+  margin-top: 1.6rem;
+}
+
+#lugares .sec-detalle .sec-etiqueta {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+/* Patrimonio: tarjetas centradas (la última fila no queda corrida a la izquierda) */
+.pat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pat-grid > .pat-card {
+  flex: 0 0 100%;
+}
+
+@media (min-width: 560px) {
+  .pat-grid > .pat-card {
+    flex-basis: calc((100% - 1rem) / 2);
+  }
+}
+
+@media (min-width: 1000px) {
+  .pat-grid > .pat-card {
+    flex-basis: calc((100% - 3rem) / 4);
+  }
+}
+
+/* Patrimonio: descripción corta debajo del nombre */
+.pat-cuerpo .pat-desc {
+  margin: 0.35rem 0 0.2rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+/* Patrimonio: año en verde para los sitios naturales */
+.pat-card--natural .anio {
+  color: #2f7d4f;
+}

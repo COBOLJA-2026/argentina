@@ -1,0 +1,337 @@
+(function () {
+  const icons = {
+    inicio:
+      '<svg viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg>',
+    identidad:
+      '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4a12 12 0 0 1 0 16M12 4a12 12 0 0 0 0 16"/></svg>',
+    historia:
+      '<svg viewBox="0 0 24 24"><path d="M5 5h10a3 3 0 0 1 3 3v12H8a3 3 0 0 0-3 3z"/><path d="M5 5v15"/><path d="M9 9h7M9 13h7"/></svg>',
+    cultura:
+      '<svg viewBox="0 0 24 24"><circle cx="8" cy="10" r="3"/><circle cx="16" cy="10" r="3"/><path d="M5 17c.8-2 2.4-3 4.5-3s3.7 1 4.5 3M14 17c.5-1.2 1.4-2 3-2 1.4 0 2.4.7 3 2"/></svg>',
+    sociedad:
+      '<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M4 19c.7-3 2.8-5 5.5-5S15 16 15.5 19M14 19c.4-2 1.8-3.2 3.6-3.2 1.6 0 2.8 1 3.4 3.2"/></svg>',
+    legislacion:
+      '<svg viewBox="0 0 24 24"><path d="M12 3v18M7 8h10M6 20h12"/><path d="M7 8 4 14h6zM17 8l3 6h-6z"/></svg>',
+    deportes:
+      '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M5 9h14M5 15h14M12 4a12 8 0 0 1 0 16M12 4a12 8 0 0 0 0 16"/></svg>',
+    ciencia:
+      '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="9" ry="4"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(-60 12 12)"/></svg>',
+    economia:
+      '<svg viewBox="0 0 24 24"><path d="M4 18V6M4 18h16"/><path d="M8 14v4M12 10v8M16 7v11"/></svg>',
+    datos:
+      '<svg viewBox="0 0 24 24"><path d="M12 3 4 7v10l8 4 8-4V7z"/><path d="M12 12 4 7m8 5 8-5M12 12v10"/></svg>',
+    gastronomia:
+      '<svg viewBox="0 0 24 24"><path d="M8 3v8M6 3v5a2 2 0 0 0 4 0V3M10 11v10M16 3c0 4 3 5 3 9v9M16 3v9"/></svg>',
+    conclusion:
+      '<svg viewBox="0 0 24 24"><path d="M5 19V5l7 3 7-3v14l-7 3z"/><path d="M9 12l2.1 2L15 10"/></svg>',
+    temas: '<svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14"/></svg>',
+    anterior: '<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>',
+    mapa: '<svg viewBox="0 0 24 24"><path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>',
+    trivia:
+      '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.7"/><path d="M12 17h.01"/></svg>',
+    juegos:
+      '<svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4"/><path d="M15.5 12h.01M17.5 14h.01"/></svg>',
+    memoria:
+      '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="9" height="13" rx="2"/><rect x="12" y="7" width="9" height="13" rx="2"/><path d="M7.5 10v4M5.5 12h4"/></svg>',
+    cruza:
+      '<svg viewBox="0 0 24 24"><path d="M3 19 9 8l4 6 3-4 5 9z"/><path d="M3 19h18"/></svg>',
+    empanada:
+      '<svg viewBox="0 0 24 24"><path d="M3 17a9 9 0 0 1 18 0z"/><path d="M6 13.5l.9.9M9.2 11.4l.6 1.1M12 10.7v1.3M14.8 11.4l-.6 1.1M18 13.5l-.9.9"/></svg>',
+      siguiente: '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>',
+  };
+
+  // Secciones en el orden oficial A-J.
+  const secciones = [
+    { letra: "A", href: "pages/identidad.html", label: "Identidad" },
+    { letra: "B", href: "pages/historia.html", label: "Historia" },
+    { letra: "C", href: "pages/cultura.html", label: "Cultura" },
+    { letra: "D", href: "pages/sociedad.html", label: "Sociedad" },
+    { letra: "E", href: "pages/legislacion.html", label: "Legislación" },
+    { letra: "F", href: "pages/deportes.html", label: "Deportes" },
+    {
+      letra: "G",
+      href: "pages/ciencia-tecnologia.html",
+      label: "Ciencia y tecnología",
+    },
+    { letra: "H", href: "pages/economia.html", label: "Economía" },
+    { letra: "I", href: "pages/gastronomia.html", label: "Arte culinario" },
+    { letra: "J", href: "pages/conclusion.html", label: "Conclusión" },
+  ];
+  // Actividades interactivas (no son secciones informativas A-J).
+    const actividades = [
+    { icon: "mapa", href: "pages/mapa.html", label: "Mapa interactivo" },
+    { icon: "trivia", href: "pages/trivia.html", label: "Trivia" },
+    { icon: "memoria", href: "pages/memoria.html", label: "Memoria de lugares" },
+    { icon: "cruza", href: "pages/cruza.html", label: "Cruzá Argentina" },
+    { icon: "empanada", href: "pages/empanada.html", label: "Armá tu empanada" },
+  ];
+  const base = document.body.dataset.base || "";
+
+  function resolve(href) {
+    if (!base) {
+      return href;
+    }
+    if (href === "index.html") {
+      return "../index.html";
+    }
+    return href.replace("pages/", "");
+  }
+
+  function currentFile() {
+    const path = window.location.pathname.replace(/\\/g, "/");
+    const file = path.split("/").pop() || "index.html";
+    return file === "" ? "index.html" : file;
+  }
+
+  function injectFonts() {
+    if (document.getElementById("app-fonts")) {
+      return;
+    }
+    const pre = document.createElement("link");
+    pre.rel = "preconnect";
+    pre.href = "https://fonts.googleapis.com";
+    const pre2 = document.createElement("link");
+    pre2.rel = "preconnect";
+    pre2.href = "https://fonts.gstatic.com";
+    pre2.crossOrigin = "anonymous";
+    const link = document.createElement("link");
+    link.id = "app-fonts";
+    link.rel = "stylesheet";
+    link.href =
+      "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap";
+    document.head.append(pre, pre2, link);
+  }
+
+    function esActual(href, file, tambien) {
+    return resolve(href).split("/").pop() === file || (tambien || []).includes(file);
+  }
+
+  // Botón de la barra inferior (celular).
+  function itemHtml(href, label, icon, file) {
+    const current = esActual(href, file) ? ' aria-current="page"' : "";
+    return `<a class="nav-item" href="${resolve(href)}"${current}>${icons[icon]}<span>${label}</span></a>`;
+  }
+
+  // Fila de la barra lateral (computador).
+    function sideHtml(item, file) {
+    const current = esActual(item.href, file, item.tambien) ? ' aria-current="page"' : "";
+    const sub = item.sub ? `<small>${item.sub}</small>` : "";
+    const marca = item.letra || icons[item.icon];
+    return `<a class="side-item" href="${resolve(item.href)}"${current}><span class="side-letter" aria-hidden="true">${marca}</span><span class="side-text">${item.label}${sub}</span></a>`;
+  }
+
+  // Fila de la lista que se abre en el celular.
+    function sheetHtml(item, file) {
+    const current = esActual(item.href, file, item.tambien) ? ' aria-current="page"' : "";
+    const marca = item.letra || icons[item.icon];
+    return `<a href="${resolve(item.href)}"${current}><span class="side-letter" aria-hidden="true">${marca}</span><span>${item.label}</span></a>`;
+  }
+
+  injectFonts();
+  const file = currentFile();
+  const home = resolve("index.html");
+
+  const orden = [{ href: "index.html", label: "Inicio" }].concat(secciones);
+  const idx = orden.findIndex((item) => esActual(item.href, file));
+  const anterior = idx > 0 ? orden[idx - 1] : null;
+  const siguiente = idx >= 0 && idx < orden.length - 1 ? orden[idx + 1] : null;
+
+  const header = document.getElementById("site-header");
+  if (header) {
+    header.innerHTML = `
+      <div class="header-inner">
+        <a class="brand" href="${home}">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Argentina<small>COBOLJA · Mundial de Saberes</small></span>
+        </a>
+      </div>
+    `;
+  }
+
+  const sidebar = document.createElement("aside");
+  sidebar.className = "sidebar";
+  sidebar.setAttribute("aria-label", "Navegación por secciones");
+  sidebar.innerHTML = `
+    
+    <a class="side-item" href="${home}"${file === "index.html" ? ' aria-current="page"' : ""}><span class="side-letter" aria-hidden="true">${icons.inicio}</span><span class="side-text">Inicio</span></a>
+    <p class="side-heading">Secciones</p>
+    ${secciones.map((item) => sideHtml(item, file)).join("")}
+        <p class="side-heading">Actividades</p>
+    ${actividades.map((item) => sideHtml(item, file)).join("")}
+  `;
+  const skip = document.querySelector(".skip-link");
+  if (skip) {
+    skip.after(sidebar);
+  } else {
+    document.body.prepend(sidebar);
+  }
+
+  function pasoHtml(item, label, icon) {
+    if (!item) {
+      return `<span class="nav-item is-disabled" aria-hidden="true">${icons[icon]}<span>${label}</span></span>`;
+    }
+    return `<a class="nav-item" href="${resolve(item.href)}" aria-label="${label}: ${item.label}">${icons[icon]}<span>${label}</span></a>`;
+  }
+
+  const dock = document.createElement("nav");
+  dock.className = "dock";
+  dock.setAttribute("aria-label", "Navegación móvil");
+  dock.innerHTML = `
+    ${itemHtml("index.html", "Inicio", "inicio", file)}
+    ${pasoHtml(anterior, "Anterior", "anterior")}
+    <button class="nav-item" type="button" id="secciones-btn" aria-expanded="false"${idx > 0 ? ' aria-current="true"' : ""}>${icons.temas}<span>Secciones</span></button>
+    ${pasoHtml(siguiente, "Siguiente", "siguiente")}
+  `;
+  document.body.appendChild(dock);
+
+  const sheet = document.createElement("div");
+  sheet.className = "sheet";
+  sheet.id = "secciones-sheet";
+  sheet.innerHTML = `<h2>Secciones</h2>${secciones.map((item) => sheetHtml(item, file)).join("")}<h2 class="sheet-sub">Actividades</h2>${actividades.map((item) => sheetHtml(item, file)).join("")}`;
+  document.body.appendChild(sheet);
+
+  const seccionesBtn = document.getElementById("secciones-btn");
+
+  seccionesBtn.addEventListener("click", () => {
+    const open = sheet.classList.toggle("is-open");
+    seccionesBtn.setAttribute("aria-expanded", String(open));
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!sheet.classList.contains("is-open")) {
+      return;
+    }
+    const inside =
+      sheet.contains(event.target) || event.target.closest("#secciones-btn");
+    if (!inside) {
+      sheet.classList.remove("is-open");
+      seccionesBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  /* Dirección pública de la portada, para el código QR del pie:
+     1) SITE_CONFIG.publicUrl, si está definida (dominio propio).
+     2) La portada del sitio donde se está viendo (sirve en cualquier alojamiento).
+     3) Vacía si se abre en la propia computadora (localhost o archivo). */
+  function direccionPublica() {
+    const fija = window.SITE_CONFIG && window.SITE_CONFIG.publicUrl;
+    if (fija) {
+      return fija;
+    }
+    const host = window.location.hostname;
+    const local =
+      window.location.protocol === "file:" ||
+      host === "" ||
+      host === "localhost" ||
+      host === "127.0.0.1" ||
+      host === "[::1]" ||
+      host.endsWith(".local") ||
+      /^(10|192\.168|172\.(1[6-9]|2\d|3[01]))\./.test(host);
+    if (local) {
+      return "";
+    }
+    return new URL(document.body.dataset.base || "", window.location.href).href;
+  }
+  const siteUrl = direccionPublica();
+  const footer = document.getElementById("site-footer");
+  if (footer) {
+    footer.innerHTML = `
+      <div class="footer-grid">
+        <div>
+          <h2>Colegio Boliviano Japonés</h2>
+          <p>Plataforma educativa sobre Argentina para la Feria Digital · Mundial de Saberes Americanos 2026.</p>
+        </div>
+                <div>
+          <h2>Créditos y mapa</h2>
+          <p>Mapa: <a href="https://leafletjs.com" rel="noopener">Leaflet</a> y
+          <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap</a>.</p>
+          <p><a href="${(document.body.dataset.base || "") + "pages/creditos.html"}">Ver créditos completos</a></p>
+        </div>
+        <div>
+          <h2>Código QR</h2>
+          <div class="qr-box" id="qr-box" role="img" aria-label="Código QR para abrir este sitio"></div>
+          <p class="qr-nota" id="qr-nota"></p>
+        </div>
+      </div>
+    `;
+  }
+
+  /* Código QR del pie: se dibuja en el propio navegador (js/qrcode.js).
+     Si esa librería no carga, se usa un servicio externo como respaldo. */
+  (function dibujarQr() {
+    const caja = document.getElementById("qr-box");
+    const nota = document.getElementById("qr-nota");
+    if (!caja || !nota) {
+      return;
+    }
+    if (!siteUrl) {
+      caja.style.display = "none";
+      nota.textContent =
+        "El código QR aparece cuando el sitio está publicado en internet.";
+      return;
+    }
+    const enlace = document.createElement("a");
+    enlace.href = siteUrl;
+    enlace.textContent = siteUrl.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    nota.appendChild(enlace);
+
+    const respaldo = () => {
+      const img = document.createElement("img");
+      img.src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+        encodeURIComponent(siteUrl);
+      img.alt = "Código QR para abrir este sitio";
+      img.width = 148;
+      img.height = 148;
+      caja.replaceChildren(img);
+    };
+    const dibujar = () => {
+      try {
+        const qr = window.qrcode(0, "M");
+        qr.addData(siteUrl);
+        qr.make();
+        caja.innerHTML = qr.createSvgTag({ cellSize: 4, scalable: true });
+      } catch (error) {
+        respaldo();
+      }
+    };
+
+    if (window.qrcode) {
+      dibujar();
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = (document.body.dataset.base || "") + "js/qrcode.js";
+    script.onload = dibujar;
+    script.onerror = respaldo;
+    document.head.appendChild(script);
+  })();
+
+  const imgBase = (document.body.dataset.base || "") + "assets/img/";
+  document.querySelectorAll("[data-img]").forEach((el) => {
+    if (el.id === "fecha-imagen") return;
+    const src = imgBase + el.dataset.img;
+    const probe = new Image();
+    probe.onload = () => {
+      el.classList.add("has-photo");
+      el.classList.remove("is-empty");
+      if (el.matches("figure.shot")) {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = el.dataset.alt || "";
+        el.prepend(img);
+      } else {
+        el.style.backgroundImage = "url('" + src + "')";
+      }
+    };
+    probe.onerror = () => el.classList.add("is-empty");
+    probe.src = src;
+  });
+})();
+
+/* Adorno de temporada (ver js/hornero.js) */
+(function () {
+  var s = document.createElement("script");
+  s.src = (document.body.dataset.base || "") + "js/hornero.js?v=2";
+  document.body.appendChild(s);
+})();

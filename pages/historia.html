@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Explorá la historia argentina: sus orígenes, acontecimientos importantes y personajes históricos.">
+  <title>Historia · Argentina</title>
+
+  <link rel="icon" href="../assets/icons/sol.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/secciones.css">
+
+  <style>
+    .historia-intro {
+      max-width: 760px;
+      margin: 0 auto 1.8rem;
+      text-align: left;
+    }
+
+    .historia-intro p,
+    .historia-bajada {
+      color: var(--muted);
+    }
+
+    .historia-indice {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .8rem;
+      margin: 1.2rem 0 2.5rem;
+    }
+
+    .historia-indice a {
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+      min-width: 0;
+      padding: 1rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      text-decoration: none;
+      box-shadow: var(--sombra);
+      transition: transform .2s, border-color .2s;
+    }
+
+    .historia-indice a:hover {
+      transform: translateY(-3px);
+      border-color: var(--celeste-oscuro);
+    }
+
+    .indice-numero {
+      color: var(--celeste-oscuro);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .historia-indice strong {
+      color: var(--azul);
+      line-height: 1.3;
+    }
+
+    .historia-indice small {
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .historia-seccion {
+      margin: 2.8rem 0;
+      scroll-margin-top: 6rem;
+    }
+
+    .historia-seccion>h2 {
+      margin-bottom: .4rem;
+    }
+
+    .historia-bajada {
+      max-width: none;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ESCALA DE TEXTO
+      Títulos, subtítulos y descripciones iguales en todos los apartados.
+       Solo las tarjetas (fechas, personajes, etc.) pueden tener su propio tamaño. */
+
+    .historia-intro h2,
+    .historia-seccion>h2,
+    .historia-cierre h2 {
+      font-size: 1.6rem;
+    }
+
+    .historia-seccion>h3,
+    .origen-destacado h3,
+    .ciudades-bloque h3 {
+      margin-bottom: .6rem;
+      font-size: 1.25rem;
+      line-height: 1.35;
+    }
+
+    .historia-bajada,
+    .origen-destacado p,
+    .ciudades-bloque p {
+      font-size: 1.05rem;
+    }
+
+    /* IMÁGENES */
+
+    .shot {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      border-radius: 15px;
+      background: #edf2f7;
+    }
+
+    .shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .shot figcaption {
+      padding: .65rem .8rem;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.45;
+      background: #f5f8fb;
+    }
+
+    .origen-destacado,
+    .ciudades-bloque {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+      margin: 1.2rem 0;
+    }
+
+    .origen-destacado>div,
+    .ciudades-bloque>div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+      padding: .4rem 0;
+    }
+
+    .origen-destacado .shot {
+      align-self: center;
+    }
+
+    .origen-destacado .shot img {
+      aspect-ratio: 5 / 4;
+    }
+
+    /* ORIGEN */
+
+    .origen-tarjetas {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .8rem;
+      margin-top: 1rem;
+      align-items: start;
+    }
+
+    .origen-tarjeta {
+      min-width: 0;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+    }
+
+    .origen-tarjeta summary {
+      padding: 1rem;
+      color: var(--azul);
+      font-weight: 800;
+      line-height: 1.4;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .origen-tarjeta summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .origen-tarjeta summary::after {
+      content: "+";
+      float: right;
+      margin-left: .4rem;
+      color: var(--celeste-oscuro);
+      font-size: 1.25rem;
+    }
+
+    .origen-tarjeta[open] summary::after {
+      content: "−";
+    }
+
+    .origen-tarjeta .detalle {
+      padding: 0 1rem 1rem;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .origen-tarjeta .detalle p {
+      margin: 0;
+    }
+
+    .origen-thumb {
+      position: relative;
+      display: block;
+      height: 250px;
+      margin: -1rem -1rem 0;
+      overflow: hidden;
+      background-color: #d9eaf7;
+      background-position: center 30%;
+      background-size: cover;
+    }
+
+    /* Retrato vertical: se ve completo, con fondo difuminado a los lados */
+    .origen-thumb-retrato {
+      isolation: isolate;
+    }
+
+    .origen-thumb-retrato::before,
+    .origen-thumb-retrato::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: inherit;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .origen-thumb-retrato::before {
+      inset: -24px;
+      background-size: cover;
+      filter: blur(16px) brightness(.92);
+    }
+
+    .origen-thumb-retrato::after {
+      background-size: contain;
+    }
+
+    /* Pie de foto debajo de la imagen (alto fijo para que los tÃ­tulos queden nivelados) */
+    .origen-tarjeta .origen-pie {
+      display: block;
+      min-height: 4.1em;
+      margin: .5rem 0 .8rem;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+
+    .dato-curioso {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-left: 4px solid var(--sol);
+      border-radius: 0 14px 14px 0;
+      background: #fff8e1;
+    }
+
+    .dato-curioso strong {
+      display: block;
+      margin-bottom: .2rem;
+      color: var(--azul);
+    }
+
+    .dato-curioso p {
+      margin: 0;
+    }
+
+    /* LÍNEA DEL TIEMPO */
+
+    .linea-tiempo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      margin: 1.2rem 0;
+    }
+
+    .fecha-btn {
+      flex: 1 1 100px;
+      min-width: 0;
+      padding: .8rem .6rem;
+      color: var(--azul);
+      font: inherit;
+      font-weight: 800;
+      text-align: center;
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      transition: background .2s, color .2s, transform .2s;
+    }
+
+    .fecha-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--celeste-oscuro);
+    }
+
+    .fecha-btn[aria-pressed="true"] {
+      color: #fff;
+      background: var(--azul);
+      border-color: var(--azul);
+    }
+
+    .fecha-btn small {
+      display: block;
+      margin-top: .15rem;
+      font-size: .75rem;
+      font-weight: 400;
+      line-height: 1.4;
+      opacity: .85;
+    }
+
+    .fecha-detalle {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+      gap: 1.2rem;
+      align-items: center;
+      min-height: 220px;
+      padding: 1.2rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--sombra);
+    }
+
+    .fecha-detalle h3 {
+      margin-bottom: .6rem;
+      font-size: 1.35rem;
+    }
+
+    .fecha-detalle p {
+      margin-bottom: .6rem;
+    }
+
+    .fecha-grande {
+      display: inline-block;
+      margin-bottom: .6rem;
+      color: var(--celeste-oscuro);
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+
+    .fecha-detalle .shot img {
+      aspect-ratio: 4 / 3;
+    }
+
+    /* PERSONAJES HISTÓRICOS */
+
+    .personajes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .personaje {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+      padding: 1rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .personaje-foto {
+      width: 100%;
+      max-width: 170px;
+      min-height: 0;
+      margin: 0 auto .9rem;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .personaje .personaje-foto img {
+      display: block;
+      width: 100%;
+      height: 190px;
+      aspect-ratio: auto;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .personaje h3 {
+      margin-bottom: .3rem;
+      font-size: 1.05rem;
+      text-align: center;
+    }
+
+    .personaje .epoca {
+      margin-bottom: .5rem;
+      color: var(--celeste-oscuro);
+      font-size: .8rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .personaje>p {
+      align-self: stretch;
+      min-height: 4.8em;
+      margin-bottom: .7rem;
+      font-size: .94rem;
+      text-align: center;
+    }
+
+    .personaje details {
+      align-self: stretch;
+      margin-top: auto;
+      padding-top: .7rem;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .personaje summary {
+      color: var(--azul-medio);
+      font-size: .9rem;
+      font-weight: 800;
+      cursor: pointer;
+      list-style-position: inside;
+    }
+
+    .biografia-ampliada {
+      margin-top: .6rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .biografia-ampliada p {
+      margin: 0;
+    }
+
+    /* BLOQUE DE CIUDADES */
+
+    .ciudades-bloque {
+      gap: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .ciudades-bloque>div {
+      padding: 1.2rem;
+      background: #f4f8fc;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .ciudades-bloque p:last-child {
+      margin-bottom: 0;
+    }
+
+    .ciudades-bloque .shot {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 300px;
+    }
+
+    .ciudades-bloque .shot img {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: center 25%;
+    }
+
+    /* CIERRE Y FUENTES */
+
+    .historia-cierre {
+      margin: 2rem 0;
+      padding: 1.3rem;
+      text-align: center;
+      background: #eaf4fc;
+      border-radius: 18px;
+    }
+
+    .historia-cierre p {
+      margin-bottom: 0;
+    }
+
+    .historia-fuentes {
+      font-size: .92rem;
+    }
+
+    .historia-fuentes a {
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 720px) {
+      .historia-indice {
+        grid-template-columns: minmax(0, 1fr);
+        gap: .7rem;
+      }
+
+      .historia-indice a {
+        display: flex;
+        flex-direction: column;
+        gap: .3rem;
+        padding: .9rem 1rem;
+      }
+
+      .historia-indice .indice-numero {
+        display: block;
+        font-size: .72rem;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+      }
+
+      .historia-indice strong {
+        display: block;
+        overflow-wrap: anywhere;
+      }
+
+      .historia-indice small {
+        display: block;
+        font-size: .82rem;
+      }
+
+      .origen-destacado,
+      .fecha-detalle,
+      .ciudades-bloque {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .origen-destacado>div,
+      .ciudades-bloque>div {
+        padding: 1rem;
+      }
+
+      .origen-tarjetas {
+        grid-template-columns: 1fr;
+      }
+
+      .origen-destacado .shot {
+        order: -1;
+      }
+
+      .linea-tiempo {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .fecha-btn {
+        min-width: 0;
+      }
+
+      .fecha-detalle .shot {
+        max-width: 100%;
+      }
+
+      .ciudades-bloque .shot {
+        min-height: 0;
+      }
+
+      .ciudades-bloque .shot img {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 16 / 10;
+      }
+
+      .personaje-foto {
+        max-width: 150px;
+      }
+
+      .personaje .personaje-foto img {
+        height: 170px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .personajes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fecha-detalle {
+        padding: .9rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .historia-indice a,
+      .fecha-btn {
+        transition: none;
+      }
+    }
+
+    /* INTRO alineada con el resto de la página */
+    .historia-intro {
+      max-width: none;
+      margin: 0 0 1.8rem;
+      text-align: left;
+    }
+
+    .historia-intro h2,
+    .historia-intro p {
+      text-align: left;
+    }
+
+    .historia-intro p {
+      max-width: 760px;
+    }
+      .origen-tarjeta .shot { margin-top: 1rem; }
+    .origen-tarjeta .shot-retrato img { aspect-ratio: auto; max-height: 460px; object-fit: contain; background: #edf2f7; }
+
+    .historia-seccion p {
+  max-width: none;
+}
+</style>
+</head>
+
+<body data-base="../">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" id="site-header"></header>
+
+  <main class="wrap" id="contenido">
+    <article class="prose">
+
+      <!-- PORTADA -->
+      <div class="page-hero" data-img="historia.jpg" data-hint="Imagen de la historia argentina">
+        <p class="section-kicker">Sección B</p>
+        <h1>Historia</h1>
+        <p>
+          Conocé los orígenes de la Argentina, los acontecimientos 
+          que marcaron su desarrollo y los personajes que tuvieron un 
+          papel destacado en su historia.
+        </p>
+      </div>
+
+      <div class="historia-intro">
+        <h2>Explorá a tu ritmo</h2>
+        <p>
+          Seleccioná un tema para conocer los principales procesos 
+          históricos, consultar fechas relevantes y ampliar la 
+          información sobre sus protagonistas.
+        </p>
+      </div>
+
+      <!-- NAVEGACIÓN INTERNA -->
+      <nav class="historia-indice" aria-label="Apartados de Historia">
+        <a href="#origen">
+          <span class="indice-numero">01 · DESCUBRIR</span>
+          <strong>Origen</strong>
+          <small>Los primeros habitantes y la formación del territorio.</small>
+        </a>
+
+        <a href="#acontecimientos">
+          <span class="indice-numero">02 · EXPLORAR</span>
+          <strong>Acontecimientos</strong>
+          <small>Fechas que cambiaron el rumbo del país.</small>
+        </a>
+
+        <a href="#personajes">
+          <span class="indice-numero">03 · CONOCER</span>
+          <strong>Personajes históricos</strong>
+          <small>Personas que dejaron su huella en la historia.</small>
+        </a>
+      </nav>
+
+      <!-- 1. ORIGEN -->
+      <section class="historia-seccion" id="origen">
+        <p class="section-kicker">01 · Descubrir</p>
+        <h2>Origen de Argentina</h2>
+
+        <p class="historia-bajada">
+          La historia del territorio argentino comenzó mucho 
+          antes de la formación del país. Conocé las principales 
+          etapas y los procesos que dieron origen a la Argentina actual.
+        </p>
+
+        <div class="origen-destacado">
+          <div>
+            <h3>Antes de existir el país</h3>
+            <p>
+              Durante miles de años, diversos pueblos originarios habitaron
+              el territorio que hoy conocemos como Argentina. Desarrollaron
+              sus propias lenguas, formas de organización, conocimientos y
+              tradiciones.
+            </p>
+            <p>
+              Más tarde, la conquista española y el período colonial
+              transformaron profundamente la región. El país se formó a través
+              de un largo proceso político y social, no en un solo día.
+            </p>
+          </div>
+
+          <figure class="shot" data-img="historia-origenes.jpg"
+            data-alt="Paisaje relacionado con los pueblos originarios de Argentina">
+            <figcaption>
+              Territorios y culturas anteriores a la Argentina actual.
+            </figcaption>
+          </figure>
+        </div>
+
+        <h3>Explorá cada etapa</h3>
+
+        <div class="origen-tarjetas">
+          <details class="origen-tarjeta">
+            <summary><span class="origen-thumb" data-img="historia-pueblos-originarios.jpg" role="img"
+                aria-label="Detalle de una estrella diaguita en Vinchina, La Rioja"></span><span class="origen-pie">Detalle de una estrella diaguita, Vinchina (La Rioja).</span>Pueblos originarios</summary>
+            <div class="detalle">
+              <p>
+                Los pueblos diaguitas, guaraníes, mapuches, qom y muchos otros
+                desarrollaron distintas formas de vida según sus territorios.
+                No constituían una única cultura ni compartían las mismas
+                costumbres.
+              </p>
+            </div>
+          </details>
+
+          <details class="origen-tarjeta">
+            <summary><span class="origen-thumb origen-thumb-retrato" data-img="historia-epoca-colonial.jpg" role="img"
+                aria-label="Retrato de Manuel Valiente de Moctezuma, inspector de milicias del Río de la Plata, hacia 1764"></span><span class="origen-pie">Manuel Valiente de Moctezuma, inspector de milicias del Río de la Plata (c. 1764).</span>Época colonial</summary>
+            <div class="detalle">
+              <p>
+                La Corona española dominó gran parte de la región. En 1776
+                creó el Virreinato del Río de la Plata, con capital en Buenos
+                Aires. La sociedad colonial estaba marcada por desigualdades
+                y por la convivencia y los conflictos entre distintos grupos.
+              </p>
+            </div>
+          </details>
+
+          <details class="origen-tarjeta">
+            <summary><span class="origen-thumb" data-img="historia-independencia.jpg" role="img"
+                aria-label="Grabado del asalto británico a la brecha de la Ciudadela de Montevideo en 1807"></span><span class="origen-pie">Asalto británico a la brecha de la Ciudadela de Montevideo, 1807 (grabado de E. F. Burney).</span>Camino a la independencia</summary>
+            <div class="detalle">
+              <p>
+                Las invasiones británicas de 1806 y 1807, la crisis de la
+                monarquía española y los conflictos políticos contribuyeron
+                al proceso revolucionario que comenzó en 1810. La independencia
+                se declaró formalmente en 1816.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <aside class="dato-curioso">
+          <strong>¿Sabías que?</strong>
+          <p>
+            La Revolución de Mayo de 1810 y la Declaración de la Independencia
+            de 1816 fueron acontecimientos distintos. El primero inició un
+            proceso de autogobierno; el segundo declaró formalmente la
+            independencia.
+          </p>
+        </aside>
+
+        <div class="ciudades-bloque">
+          <div>
+            <h3>Las ciudades también cuentan la historia</h3>
+            <p>
+              Los edificios, plazas y monumentos de las ciudades argentinas
+              guardan huellas de distintas épocas: construcciones coloniales,
+              edificios de la etapa de la inmigración masiva y arquitectura
+              moderna. Recorrerlos permite imaginar cómo vivieron las personas
+              que protagonizaron cada momento histórico.
+            </p>
+          </div>
+
+          <figure class="shot" data-img="historia-ciudades.jpg" data-alt="Edificios de una ciudad argentina">
+            <figcaption>
+              Edificios de una ciudad argentina, testigos de distintas épocas.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 2. ACONTECIMIENTOS -->
+      <section class="historia-seccion" id="acontecimientos">
+        <p class="section-kicker">02 · Explorar</p>
+        <h2>Acontecimientos importantes</h2>
+
+        <p class="historia-bajada">
+          Consultá los acontecimientos más relevantes de la historia 
+          argentina y conocé las circunstancias en las que ocurrieron, 
+          así como su importancia para el desarrollo del país.
+        </p>
+
+        <div class="linea-tiempo" role="group" aria-label="Elegir un acontecimiento histórico">
+          <button class="fecha-btn" type="button" data-fecha="1806" aria-pressed="false">
+            1806–1807
+            <small>Invasiones británicas</small>
+          </button>
+
+          <button class="fecha-btn" type="button" data-fecha="1810" aria-pressed="true">
+            1810
+            <small>Revolución de Mayo</small>
+          </button>
+
+          <button class="fecha-btn" type="button" data-fecha="1816" aria-pressed="false">
+            1816
+            <small>Independencia</small>
+          </button>
+
+          <button class="fecha-btn" type="button" data-fecha="1853" aria-pressed="false">
+            1853
+            <small>Constitución</small>
+          </button>
+
+          <button class="fecha-btn" type="button" data-fecha="1983" aria-pressed="false">
+            1983
+            <small>Retorno democrático</small>
+          </button>
+        </div>
+
+        <div class="fecha-detalle" id="fecha-detalle" aria-live="polite" aria-atomic="true">
+          <div>
+            <span class="fecha-grande" id="fecha-anio">25 DE MAYO DE 1810</span>
+            <h3 id="fecha-titulo">La Revolución de Mayo</h3>
+
+            <p id="fecha-texto">
+              En Buenos Aires se formó la Primera Junta de gobierno, en medio
+              de una crisis de la monarquía española. Fue un paso decisivo en
+              el proceso de autogobierno de los territorios del Río de la Plata.
+            </p>
+
+            <p><strong>¿Por qué importa?</strong></p>
+
+            <p id="fecha-importancia">
+              Porque inició una etapa revolucionaria que, con conflictos y
+              cambios posteriores, condujo a la declaración de independencia.
+            </p>
+          </div>
+
+          <!-- Esta imagen la administra cambiarFecha(), no nav.js. -->
+          <figure class="shot" id="fecha-imagen" data-alt="Representación de la Revolución de Mayo">
+            <figcaption id="fecha-pie">
+              La Revolución de Mayo inició una etapa de cambios políticos.
+            </figcaption>
+          </figure>
+        </div>
+
+        <noscript>
+          <p class="dato-curioso">
+            Para cambiar las fechas interactivas, habilitá JavaScript en tu
+            navegador. Las otras secciones seguirán disponibles.
+          </p>
+        </noscript>
+      </section>
+
+      <!-- 3. PERSONAJES HISTÓRICOS -->
+      <section class="historia-seccion" id="personajes">
+        <p class="section-kicker">03 · Conocer</p>
+        <h2>Personajes históricos</h2>
+
+        <p class="historia-bajada">
+          A lo largo de la historia argentina, distintas figuras tuvieron
+          un papel destacado en la vida política, social y cultural del país. Conocé sus trayectorias y sus principales aportes.
+        </p>
+
+        <div class="personajes-grid">
+          <article class="personaje">
+            <figure class="shot personaje-foto" data-img="historia-san-martin.jpg" data-alt="Retrato de José de San Martín"></figure>
+
+            <h3>José de San Martín</h3>
+            <span class="epoca">1778–1850 · Independencia</span>
+
+            <p>
+              Militar y político argentino, fue uno de los principales líderes militares de las guerras
+              de independencia sudamericanas.
+            </p>
+
+            <details>
+              <summary>Conocer su historia</summary>
+              <div class="biografia-ampliada">
+                <p>
+                  Organizó el Ejército de los Andes y dirigió el cruce de la
+                  cordillera en 1817 para apoyar la independencia de Chile.
+                  Después participó en la campaña libertadora del Perú.
+                  Es recordado como una figura fundamental de la independencia
+                  de varios países sudamericanos.
+                </p>
+              </div>
+            </details>
+          </article>
+
+          <article class="personaje">
+            <figure class="shot personaje-foto" data-img="historia-manuel-belgrano.jpg" data-alt="Retrato de Manuel Belgrano"></figure>
+
+            <h3>Manuel Belgrano</h3>
+            <span class="epoca">1770–1820 · Revolución y bandera</span>
+
+            <p>
+              Fue abogado, dirigente revolucionario y jefe militar. Se lo
+              recuerda especialmente por la creación de la bandera.
+            </p>
+
+            <details>
+              <summary>Conocer su historia</summary>
+              <div class="biografia-ampliada">
+                <p>
+                  Participó en la Revolución de Mayo y asumió responsabilidades
+                  militares durante las guerras de independencia. En 1812 hizo
+                  enarbolar una bandera celeste y blanca en Rosario. También
+                  defendió la educación y la formación de la población.
+                </p>
+              </div>
+            </details>
+          </article>
+
+          <article class="personaje">
+            <figure class="shot personaje-foto" data-img="historia-juana-azurduy.jpg"
+              data-alt="Retrato o representación de Juana Azurduy"></figure>
+
+            <h3>Juana Azurduy</h3>
+            <span class="epoca">1780–1862 · Luchas independentistas</span>
+
+            <p>
+              Participó en las luchas revolucionarias contra el dominio
+              colonial en el Alto Perú.
+            </p>
+
+            <details>
+              <summary>Conocer su historia</summary>
+              <div class="biografia-ampliada">
+                <p>
+                  Lideró combatientes y colaboró con las fuerzas independentistas
+                  en la región del Alto Perú. Su trayectoria está vinculada a
+                  las luchas que hoy se recuerdan en Bolivia y Argentina.
+                  Su reconocimiento histórico también ayuda a visibilizar el
+                  papel de las mujeres en las guerras de independencia.
+                </p>
+              </div>
+            </details>
+          </article>
+
+          <article class="personaje">
+            <figure class="shot personaje-foto" data-img="historia-eva-peron.jpg" data-alt="Retrato de Eva Perón"></figure>
+
+            <h3>Eva Perón</h3>
+            <span class="epoca">1919–1952 · Política y sociedad</span>
+
+            <p>
+              Fue una figura política influyente y participó en iniciativas
+              de ayuda social y en la promoción del voto femenino.
+            </p>
+
+            <details>
+              <summary>Conocer su historia</summary>
+              <div class="biografia-ampliada">
+                <p>
+                  Impulsó actividades de asistencia social mediante la Fundación
+                  Eva Perón y tuvo un papel destacado en la movilización por los
+                  derechos políticos de las mujeres. En 1947 se sancionó la Ley
+                  13.010, que reconoció los derechos políticos de las mujeres
+                  argentinas. El sufragio femenino se ejerció nacionalmente
+                  por primera vez en las elecciones de 1951.
+                </p>
+              </div>
+            </details>
+          </article>
+        </div>
+
+        <aside class="dato-curioso">
+          <strong>Una historia con muchas voces</strong>
+          <p>
+            Estas cuatro figuras son solo una pequeña muestra. También es
+            importante estudiar a los pueblos originarios, las comunidades
+            migrantes, los trabajadores, las mujeres y los movimientos
+            sociales que contribuyeron a transformar el país.
+          </p>
+        </aside>
+      </section>
+
+
+      <!-- TRIVIA -->
+      <section class="historia-seccion" id="trivia">
+        <h2>¿Cuánto aprendiste?</h2>
+
+        <p class="historia-bajada">
+          Respondé tres preguntas de historia argentina.
+        </p>
+        <div id="mini-trivia"></div>
+      </section>
+
+      <!-- CIERRE -->
+      <div class="historia-cierre">
+        <h2>El pasado y su influencia en el presente</h2>
+        <p>
+          Comprender los procesos históricos permite conocer
+          cómo se formó la Argentina, cómo evolucionaron sus instituciones
+          y de qué manera los acontecimientos del pasado influyen en la sociedad actual.
+        </p>
+      </div>
+
+      <!-- FUENTES -->
+      <div class="sources sec-fuentes">
+        <details>
+          <summary><strong>Ver fuentes (4)</strong></summary>
+          <ul>
+            <li>
+              <a href="https://www.argentina.gob.ar/interior/archivo-general-de-la-nacion" target="_blank"
+                rel="noopener noreferrer">Archivo General de la Nación</a>
+              — documentos y materiales históricos.
+            </li>
+            <li>
+              <a href="https://casadelaindependencia.cultura.gob.ar/" target="_blank"
+                rel="noopener noreferrer">Casa Histórica de la Independencia</a>
+              — historia de la independencia de 1816.
+            </li>
+            <li>
+              <a href="https://www.educ.ar/" target="_blank" rel="noopener noreferrer">Educ.ar</a>
+              — recursos educativos sobre la historia argentina.
+            </li>
+            <li>
+              <a href="https://www.argentina.gob.ar/" target="_blank" rel="noopener noreferrer">Argentina.gob.ar</a>
+              — información institucional y efemérides nacionales.
+            </li>
+          </ul>
+        </details>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/nav.js"></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* ========================================
+         LÍNEA DEL TIEMPO INTERACTIVA
+      ======================================== */
+
+      const acontecimientos = {
+        "1806": {
+          anio: "1806–1807",
+          titulo: "Las invasiones británicas",
+          texto:
+            "Tropas británicas invadieron Buenos Aires en 1806 y regresaron en 1807. Fueron rechazadas por fuerzas locales y milicias.",
+          importancia:
+            "La experiencia fortaleció la participación política y militar de los habitantes de la región y debilitó la confianza en la capacidad defensiva de las autoridades coloniales.",
+          imagen: "historia-invasiones.jpg",
+          alt: "Imagen de las invasiones británicas de 1806 y 1807",
+          pie:
+            "Las invasiones británicas fueron antecedentes importantes de la Revolución de Mayo."
+        },
+
+        "1810": {
+          anio: "25 DE MAYO DE 1810",
+          titulo: "La Revolución de Mayo",
+          texto:
+            "En Buenos Aires se formó la Primera Junta de gobierno, en medio de una crisis de la monarquía española.",
+          importancia:
+            "Fue un paso decisivo en el proceso de autogobierno de los territorios del Río de la Plata. La independencia formal llegaría años después.",
+          imagen: "historia-mayo-1810.jpg",
+          alt: "Representación de la Revolución de Mayo",
+          pie:
+            "La Revolución de Mayo inició una etapa de cambios políticos."
+        },
+
+        "1816": {
+          anio: "9 DE JULIO DE 1816",
+          titulo: "La Declaración de la Independencia",
+          texto:
+            "El Congreso reunido en San Miguel de Tucumán declaró la independencia de las Provincias Unidas en Sud América.",
+          importancia:
+            "La declaración expresó formalmente la decisión de romper los vínculos de dependencia política con la monarquía española.",
+          imagen: "historia-declaracion-independencia.jpg",
+          alt: "Imagen relacionada con la Declaración de la Independencia",
+          pie:
+            "La Casa Histórica de Tucumán es uno de los lugares más vinculados a esta fecha."
+        },
+
+        "1853": {
+          anio: "1 DE MAYO DE 1853",
+          titulo: "La Constitución Nacional",
+          texto:
+            "Se sancionó la Constitución Nacional en Santa Fe, después de décadas de conflictos y debates sobre la organización del país.",
+          importancia:
+            "La Constitución estableció las bases del gobierno nacional y de la organización federal. Su historia incluye reformas posteriores.",
+          imagen: "historia-constitucion.jpg",
+          alt: "Imagen relacionada con la Constitución Nacional de 1853",
+          pie:
+            "La Constitución es la norma fundamental del orden jurídico argentino."
+        },
+
+        "1983": {
+          anio: "10 DE DICIEMBRE DE 1983",
+          titulo: "El retorno a la democracia",
+          texto:
+            "Raúl Alfonsín asumió la presidencia tras las elecciones de octubre de 1983, poniendo fin a la última dictadura militar.",
+          importancia:
+            "Comenzó un período de continuidad democrática que llega hasta el presente, con elecciones y autoridades constitucionales.",
+          imagen: "historia-democracia-1983.jpg",
+          alt: "Raúl Alfonsín hablando en un acto de campaña en 1963",
+          pie:
+            "Reproducción fotográfica de Alfonsín en 1963, en épocas de la campaña para la fórmula Illia-Perette."
+        }
+      };
+
+      const fechaBotones = document.querySelectorAll(".fecha-btn");
+      const fechaAnio = document.getElementById("fecha-anio");
+      const fechaTitulo = document.getElementById("fecha-titulo");
+      const fechaTexto = document.getElementById("fecha-texto");
+      const fechaImportancia = document.getElementById("fecha-importancia");
+      const fechaImagen = document.getElementById("fecha-imagen");
+      const fechaPie = document.getElementById("fecha-pie");
+
+      let versionImagen = 0;
+
+      function quitarImagenes() {
+        fechaImagen.querySelectorAll("img").forEach(function (img) {
+          img.remove();
+        });
+      }
+
+      function cambiarFecha(anio) {
+        const dato = acontecimientos[anio];
+
+        if (!dato || !fechaImagen) return;
+
+        fechaAnio.textContent = dato.anio;
+        fechaTitulo.textContent = dato.titulo;
+        fechaTexto.textContent = dato.texto;
+        fechaImportancia.textContent = dato.importancia;
+        fechaPie.textContent = dato.pie;
+        fechaImagen.dataset.alt = dato.alt;
+
+        const versionActual = ++versionImagen;
+
+        quitarImagenes();
+        fechaImagen.classList.remove("is-empty", "has-photo");
+
+        fechaBotones.forEach(function (boton) {
+          boton.setAttribute(
+            "aria-pressed",
+            String(boton.dataset.fecha === anio)
+          );
+        });
+
+        const imagen = document.createElement("img");
+        const ruta = "../assets/img/" + dato.imagen;
+
+        imagen.alt = dato.alt;
+        imagen.decoding = "async";
+
+        imagen.onload = function () {
+          if (versionActual !== versionImagen) return;
+
+          quitarImagenes();
+          fechaImagen.prepend(imagen);
+          fechaImagen.classList.add("has-photo");
+          fechaImagen.classList.remove("is-empty");
+        };
+
+        imagen.onerror = function () {
+          if (versionActual !== versionImagen) return;
+
+          quitarImagenes();
+          fechaImagen.classList.add("is-empty");
+          fechaImagen.classList.remove("has-photo");
+
+          console.error("No se pudo cargar la imagen:", ruta);
+        };
+
+        imagen.src = ruta;
+      }
+
+      fechaBotones.forEach(function (boton) {
+        boton.addEventListener("click", function () {
+          cambiarFecha(boton.dataset.fecha);
+        });
+      });
+
+      cambiarFecha("1806");
+
+    })();
+  </script>
+  <script>
+    window.MINI_TRIVIA = {
+      preguntas: [
+        {
+          pregunta: "¿En qué año se declaró la independencia de las Provincias Unidas en Sud América?",
+          opciones: [
+            "En 1806, durante las invasiones británicas",
+            "En 1810, durante la Revolución de Mayo",
+            "En 1816, durante el Congreso de Tucumán",
+            "En 1853, al sancionarse la Constitución"
+          ],
+          correcta: 2,
+          explicacion:
+            "La independencia fue declarada el 9 de julio de 1816 por el Congreso reunido en Tucumán. La Revolución de Mayo de 1810 había iniciado un proceso de autogobierno, pero todavía no era la declaración formal."
+        },
+        {
+          pregunta: "¿Qué acontecimiento importante ocurrió en Argentina en 1983?",
+          opciones: [
+            "Se creó la bandera celeste y blanca",
+            "Se produjo el retorno a la democracia",
+            "Se sancionó por primera vez la Constitución Nacional",
+            "Se declaró la independencia de España"
+          ],
+          correcta: 1,
+          explicacion:
+            "El 10 de diciembre de 1983, Raúl Alfonsín asumió la presidencia después de las elecciones de octubre. Comenzó una etapa de continuidad democrática."
+        },
+        {
+          pregunta: "¿En qué año se sancionó la ley que reconoció los derechos políticos de las mujeres argentinas?",
+          opciones: ["1912", "1947", "1951", "1983"],
+          correcta: 1,
+          explicacion:
+            "En 1947 se sancionó la Ley 13.010. Las mujeres votaron por primera vez a nivel nacional en las elecciones de 1951."
+        }
+      ]
+    };
+  </script>
+  <script src="../js/mini-trivia.js"></script>
+</body>
+
+</html>
